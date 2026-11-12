@@ -1,0 +1,319 @@
+{
+  "evaluation_date": "2026-11-10",
+  "proposal_title": "Consultora de datos (ejemplo sintetico)",
+  "neutral_restatement": "Consultora de datos que factura por horas a pymes colombianas.",
+  "stage": "operating",
+  "plain_answer": "Asi no vale la pena seguir: G2 falla (Tarifa efectiva 63.00 < coste por hora facturable 122.22). Lo cambiaria: Tarifa efectiva >= 122.22 o coste/hora facturable <= 63.00 (subir utilizacion o tarifa).",
+  "verdict": "NO_GO",
+  "forced_verdict": "NO_GO",
+  "low_agreement": false,
+  "runs": [
+    {
+      "run": 1,
+      "verdict": "NO_GO"
+    }
+  ],
+  "lines": [
+    {
+      "id": "consultora",
+      "archetype": "S1",
+      "modifiers": [],
+      "revenue_share": 1.0
+    }
+  ],
+  "gates": [
+    {
+      "id": "G0",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "judgment+schema",
+      "inputs": [
+        "L0"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Alcance completo"
+    },
+    {
+      "id": "G1",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "judgment",
+      "inputs": [
+        "L8"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Cuenta en nivel >= 4 con comprador economico"
+    },
+    {
+      "id": "G2",
+      "segment": "consultora",
+      "status": "fail",
+      "computed_by": "script",
+      "inputs": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "reversal_condition": "Tarifa efectiva >= 122.22 o coste/hora facturable <= 63.00 (subir utilizacion o tarifa)",
+      "resolved_by_bounds": false,
+      "reason": "Tarifa efectiva 63.00 < coste por hora facturable 122.22"
+    },
+    {
+      "id": "G2b",
+      "segment": "consultora",
+      "status": "not_applicable",
+      "computed_by": "script",
+      "inputs": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Linea no recurrente"
+    },
+    {
+      "id": "G3",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "script+judgment",
+      "inputs": [
+        "L1"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Sin dependencia fatal"
+    },
+    {
+      "id": "G4",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "judgment+table",
+      "inputs": [
+        "L1"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Sin obligaciones incumplidas (las filas 'Voluntario' nunca son KO)"
+    },
+    {
+      "id": "G5",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "judgment",
+      "inputs": [
+        "L4"
+      ],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Cada supuesto critico tiene test de <= 90 dias"
+    },
+    {
+      "id": "G7",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "script+judgment",
+      "inputs": [],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Sin SLA ni operacion 24x7 prometidos"
+    },
+    {
+      "id": "G6",
+      "segment": null,
+      "status": "pass",
+      "computed_by": "script",
+      "inputs": [],
+      "reversal_condition": null,
+      "resolved_by_bounds": false,
+      "reason": "Ningun P0 desconocido invierte el veredicto"
+    }
+  ],
+  "modules": [
+    {
+      "id": "M8",
+      "score": 1
+    },
+    {
+      "id": "M9",
+      "score": null
+    }
+  ],
+  "ledger": [
+    {
+      "id": "L1",
+      "claim": "Tarifa estandar por hora",
+      "status": "fact",
+      "value": 70,
+      "unit": "USD/h",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md, seccion Modelo de ingresos",
+        "url": null
+      },
+      "quote": "Tarifa estandar 70 USD/hora",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "module": "M8",
+      "gate": "G2",
+      "country": "CO"
+    },
+    {
+      "id": "L2",
+      "claim": "Realizacion historica",
+      "status": "fact",
+      "value": 0.9,
+      "unit": "fraccion",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md",
+        "url": null
+      },
+      "quote": "Realizacion historica 90 %",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L3",
+      "claim": "Coste cargado por hora pagada",
+      "status": "fact",
+      "value": 55,
+      "unit": "USD/h",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md, seccion Equipo y costes",
+        "url": null
+      },
+      "quote": "coste cargado por hora pagada 55 USD",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L4",
+      "claim": "Utilizacion facturable del ultimo anio",
+      "status": "fact",
+      "value": 0.45,
+      "unit": "fraccion",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md",
+        "url": null
+      },
+      "quote": "Utilizacion facturable del ultimo anio: 45 %",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L8",
+      "claim": "Contrato marco firmado con el cliente A",
+      "status": "fact",
+      "value": null,
+      "unit": null,
+      "source": {
+        "type": "proposal_document",
+        "tier": 1,
+        "title": "Anexo 2 de proposal.md: contrato marco firmado",
+        "url": null
+      },
+      "quote": "Contrato marco firmado con Cliente A",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": false,
+      "gate": "G1",
+      "country": "CO"
+    },
+    {
+      "id": "L5",
+      "claim": "Tarifa efectiva (tarifa x realizacion)",
+      "status": "estimate",
+      "value": 63.0,
+      "unit": "USD/h",
+      "source": {
+        "type": "script_output",
+        "tier": 1,
+        "title": "gates_and_score.gate_g2"
+      },
+      "derived_from": [
+        "L1",
+        "L2"
+      ],
+      "priority": "P0",
+      "tag": "[I]"
+    },
+    {
+      "id": "L6",
+      "claim": "Coste por hora facturable",
+      "status": "estimate",
+      "value": 122.22,
+      "unit": "USD/h",
+      "source": {
+        "type": "script_output",
+        "tier": 1,
+        "title": "gates_and_score.gate_g2"
+      },
+      "derived_from": [
+        "L3",
+        "L4"
+      ],
+      "priority": "P0",
+      "tag": "[I]"
+    },
+    {
+      "id": "L7",
+      "claim": "Perdida por FTE facturable al anio",
+      "status": "estimate",
+      "value": 47970.0,
+      "unit": "USD/FTE/anio",
+      "source": {
+        "type": "script_output",
+        "tier": 1,
+        "title": "breakeven_runway.breakeven_billable_fte"
+      },
+      "derived_from": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "priority": "P1",
+      "tag": "[I]"
+    }
+  ],
+  "injection_findings": [],
+  "forecasts": [
+    {
+      "event": "Utilizacion facturable trimestral >= 0,65",
+      "resolution_date": "2027-02-10",
+      "resolution_source": "partes de horas y facturas",
+      "probability": 0.33
+    }
+  ],
+  "reversal_conditions": [
+    {
+      "gate": "G2",
+      "condition": "Tarifa efectiva >= 122.22 o coste/hora facturable <= 63.00 (subir utilizacion o tarifa)"
+    }
+  ],
+  "strongest_case_against": "Ni con utilizacion completa una tarifa efectiva baja deja margen para crecer.",
+  "ue_metrics": {
+    "effective_rate": 63.0,
+    "cost_per_billable_hour": 122.22222222222221,
+    "loaded_cost_per_billable_hour": 122.22222222222223
+  },
+  "web_calls": 0
+}

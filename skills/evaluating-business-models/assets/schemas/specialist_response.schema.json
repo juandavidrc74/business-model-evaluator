@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "specialist_response.schema.json",
+  "title": "Specialist Output Contract (Referentially Closed Draft 2020-12)",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "status",
+        "agent_id",
+        "evaluation_id",
+        "task_hash",
+        "module_scores",
+        "predicate_claims",
+        "atomic_measurements",
+        "challenges"
+      ],
+      "properties": {
+        "schema_version": {"const": "0.4.9"},
+        "status": {"const": "SUCCESS"},
+        "agent_id": {"enum": ["market_analyst", "finance_analyst", "tech_analyst", "risk_analyst"]},
+        "evaluation_id": {"type": "string"},
+        "task_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "module_scores": {"type": "object"},
+        "predicate_claims": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/predicate_claim_entry"}
+        },
+        "atomic_measurements": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/atomic_measurement_entry"}
+        },
+        "challenges": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/challenge_entry"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"agent_id": {"const": "market_analyst"}}},
+          "then": {
+            "properties": {
+              "module_scores": {
+                "type": "object",
+                "required": ["M2", "M3", "M4", "M5"],
+                "properties": {
+                  "M2": {"$ref": "#/$defs/module_score_entry"},
+                  "M3": {"$ref": "#/$defs/module_score_entry"},
+                  "M4": {"$ref": "#/$defs/module_score_entry"},
+                  "M5": {"$ref": "#/$defs/module_score_entry"}
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"agent_id": {"const": "finance_analyst"}}},
+          "then": {
+            "properties": {
+              "module_scores": {
+                "type": "object",
+                "required": ["M6", "M7", "M8", "M9"],
+                "properties": {
+                  "M6": {"$ref": "#/$defs/module_score_entry"},
+                  "M7": {"$ref": "#/$defs/module_score_entry"},
+                  "M8": {"$ref": "#/$defs/module_score_entry"},
+                  "M9": {"$ref": "#/$defs/module_score_entry"}
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"agent_id": {"const": "tech_analyst"}}},
+          "then": {
+            "properties": {
+              "module_scores": {
+                "type": "object",
+                "required": ["M10", "M11"],
+                "properties": {
+                  "M10": {"$ref": "#/$defs/module_score_entry"},
+                  "M11": {"$ref": "#/$defs/module_score_entry"}
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"agent_id": {"const": "risk_analyst"}}},
+          "then": {
+            "properties": {
+              "module_scores": {
+                "type": "object",
+                "required": ["M12", "M13", "M14", "M15"],
+                "properties": {
+                  "M12": {"$ref": "#/$defs/module_score_entry"},
+                  "M13": {"$ref": "#/$defs/module_score_entry"},
+                  "M14": {"$ref": "#/$defs/module_score_entry"},
+                  "M15": {"$ref": "#/$defs/module_score_entry"}
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "status",
+        "agent_id",
+        "evaluation_id",
+        "task_hash",
+        "error_message",
+        "degraded_reason",
+        "unreachable_modules"
+      ],
+      "properties": {
+        "schema_version": {"const": "0.4.9"},
+        "status": {"enum": ["FAILED", "DEGRADED"]},
+        "agent_id": {"enum": ["market_analyst", "finance_analyst", "tech_analyst", "risk_analyst"]},
+        "evaluation_id": {"type": "string"},
+        "task_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "error_message": {"type": "string", "maxLength": 500},
+        "degraded_reason": {"type": "string", "maxLength": 500},
+        "unreachable_modules": {"type": "array", "items": {"type": "string", "pattern": "^M([1-9]|1[0-5])$"}}
+      },
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "allowed_predicates": {
+      "type": "string",
+      "enum": [
+        "PRED_ECONOMIC_BUYER_CONFIRMED",
+        "PRED_PAYING_CUSTOMER_OR_CONVERSION_PROVEN",
+        "PRED_CONTRACT_SIGNED",
+        "PRED_CAC_NOT_APPLICABLE_PROVEN",
+        "PRED_MULTIYEAR_NO_CONVENIENCE_TERMINATION",
+        "PRED_DIVERSIFICATION_PLAN_VERIFIABLE",
+        "PRED_MODEL_PROVIDER_FALLBACK_TESTED",
+        "PRED_DATA_RESIDENCE_DOCUMENTED",
+        "PRED_SECTOR_REGULATORY_COMPLIANCE_PROVEN",
+        "PRED_IP_AND_OSS_LICENSES_CLEARED",
+        "PRED_PROMPT_INJECTION_DEFENSE_DOCUMENTED",
+        "PRED_CRITICAL_ASSUMPTION_TESTABLE_LE_90D",
+        "PRED_EVAL_SET_GROUND_TRUTH_EXISTS",
+        "PRED_24X7_SHIFT_SCHEDULE_PROVEN",
+        "PRED_SLA_BACKED_BY_ARCHITECTURE",
+        "PRED_DISINTERMEDIATION_CONTROLS_MET",
+        "PRED_CRITICAL_SUPPLIER_ALTERNATIVE_TESTED"
+      ]
+    },
+    "allowed_measurements": {
+      "type": "string",
+      "enum": [
+        "MEAS_HOURLY_BILLING_RATE",
+        "MEAS_LOADED_LABOR_COST_PER_HOUR",
+        "MEAS_BILLABLE_UTILIZATION",
+        "MEAS_REALIZATION_RATE",
+        "MEAS_TOP1_CLIENT_REVENUE_SHARE",
+        "MEAS_TOP3_CLIENT_REVENUE_SHARE",
+        "MEAS_ARPA_MONTHLY",
+        "MEAS_CAC",
+        "MEAS_CHURN_MONTHLY",
+        "MEAS_GROSS_MARGIN_DIRECT",
+        "MEAS_PASS1_ACCURACY",
+        "MEAS_HUMAN_SUPERVISION_COGS_PER_TASK",
+        "MEAS_INFERENCE_COGS_PER_TASK",
+        "MEAS_TOTAL_COGS_PER_TASK",
+        "MEAS_TASK_PRICE",
+        "MEAS_RECURRING_CONTRACT_MONTHS",
+        "MEAS_NET_BURN_MONTHLY",
+        "MEAS_CASH_BALANCE",
+        "MEAS_PROJECT_FIXED_PRICE",
+        "MEAS_ESTIMATED_PROJECT_HOURS",
+        "MEAS_PASS_THROUGH_COST_RATIO",
+        "MEAS_FACILITY_POWER_COST",
+        "MEAS_CAPEX_ANNUAL",
+        "MEAS_TAKE_RATE",
+        "MEAS_SILENT_ERROR_RATE"
+      ]
+    },
+    "predicate_claim_entry": {
+      "type": "object",
+      "required": ["subject_id", "predicate", "ledger_id", "source_doc_sha256", "source_locator", "evidence_tier", "claimed_status"],
+      "properties": {
+        "subject_id": {"type": "string", "pattern": "^(acc|sup|plat|prod|team)_[0-9]{2,4}$"},
+        "predicate": {"$ref": "#/$defs/allowed_predicates"},
+        "ledger_id": {"type": "string", "pattern": "^L[0-9]+(_ADV_[0-9]+)?$"},
+        "source_doc_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "source_locator": {"type": "string"},
+        "evidence_tier": {"type": "integer", "enum": [1, 2]},
+        "claimed_status": {"enum": ["true", "false", "unknown"]}
+      },
+      "additionalProperties": false
+    },
+    "atomic_measurement_entry": {
+      "type": "object",
+      "required": ["subject_id", "measurement_type", "value_decimal", "unit", "period", "ledger_id", "source_doc_sha256", "source_locator", "evidence_tier"],
+      "properties": {
+        "subject_id": {"type": "string", "pattern": "^(acc|sup|plat|prod|team)_[0-9]{2,4}$"},
+        "measurement_type": {"$ref": "#/$defs/allowed_measurements"},
+        "value_decimal": {"type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?$"},
+        "unit": {"enum": ["USD", "EUR", "ratio", "months", "hours"]},
+        "period": {"type": "string"},
+        "ledger_id": {"type": "string", "pattern": "^L[0-9]+(_ADV_[0-9]+)?$"},
+        "source_doc_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "source_locator": {"type": "string"},
+        "evidence_tier": {"type": "integer", "enum": [1, 2]}
+      },
+      "additionalProperties": false
+    },
+    "module_score_entry": {
+      "type": "object",
+      "required": ["score", "evidence_ledger_ids", "rationale_summary"],
+      "properties": {
+        "score": {"type": "integer", "minimum": 1, "maximum": 5},
+        "evidence_ledger_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "pattern": "^L[0-9]+(_ADV_[0-9]+)?$"}
+        },
+        "rationale_summary": {"type": "string", "maxLength": 500}
+      },
+      "additionalProperties": false
+    },
+    "challenge_entry": {
+      "type": "object",
+      "required": ["target_ledger_id", "challenge_evidence_ledger_id", "challenge_reason"],
+      "properties": {
+        "target_ledger_id": {"type": "string", "pattern": "^L[0-9]+(_ADV_[0-9]+)?$"},
+        "challenge_evidence_ledger_id": {"type": "string", "pattern": "^L[0-9]+(_ADV_[0-9]+)?$"},
+        "challenge_reason": {"type": "string", "maxLength": 500}
+      },
+      "additionalProperties": false
+    }
+  }
+}

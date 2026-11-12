@@ -1,0 +1,15 @@
+{
+  "name": "bme",
+  "owner": {"name": "juandavidrc74"},
+  "metadata": {
+    "description": "Business Model Evaluator: evaluación de propuestas de negocio de servicios tecnológicos con el método CEST."
+  },
+  "plugins": [
+    {
+      "name": "business-model-evaluator",
+      "source": "./",
+      "description": "Evalúa si vale la pena abrir un negocio de servicios tecnológicos: entrevista a los socios, compuertas no compensatorias, Evidence Ledger, unit economics, probabilidad de conseguir clientes y subagentes (abogado del diablo, verificador de evidencia, analistas).",
+      "version": "0.7.3"
+    }
+  ]
+}

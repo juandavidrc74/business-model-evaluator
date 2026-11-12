@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ledger.schema.json",
+  "title": "Evidence Ledger entry",
+  "description": "One entry per claim (RT-LED-01). A number without a source only exists as a labelled assumption. Model parametric knowledge is tier 4 and never sustains gates or scores >= 4.",
+  "type": "object",
+  "required": ["id", "claim", "status", "priority", "tag", "source"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^L[0-9A-Za-z_-]+$"},
+    "claim": {"type": "string", "minLength": 3},
+    "status": {"enum": ["fact", "assumption", "estimate", "unknown", "contradiction"]},
+    "value": {"type": ["number", "string", "boolean", "null", "array", "object"]},
+    "unit": {"type": ["string", "null"]},
+    "source": {
+      "type": "object",
+      "required": ["type", "tier"],
+      "properties": {
+        "type": {"enum": ["proposal_document", "user_statement", "web", "api", "benchmark_db", "script_output", "model_knowledge", "none"]},
+        "tier": {"type": "integer", "minimum": 1, "maximum": 4},
+        "title": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"]}
+      }
+    },
+    "quote": {"type": ["string", "null"], "x-maxWords": 15},
+    "publication_date": {"type": ["string", "null"]},
+    "access_date": {"type": ["string", "null"]},
+    "retrieved_by_tool": {"type": "boolean"},
+    "derived_from": {"type": "array", "items": {"type": "string"}},
+    "priority": {"enum": ["P0", "P1", "P2"]},
+    "evidence_quality": {"enum": ["A", "B", "C", null]},
+    "tag": {"enum": ["[D]", "[S]", "[M]", "[I]", "[P]"]},
+    "benchmark_id": {"type": ["string", "null"]},
+    "country": {"type": ["string", "null"]},
+    "reference_period": {"type": ["string", "null"]},
+    "unit_of_analysis": {"type": ["string", "null"]},
+    "transferability": {"enum": ["same_country", "adjusted_documented", "not_transferable", "unknown", null]},
+    "self_declared": {"type": "boolean"},
+    "optional_paid": {"type": "boolean"},
+    "module": {"type": ["string", "null"]},
+    "gate": {"type": ["string", "null"]}
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p0_requirements.schema.json",
+  "title": "Canonical P0 Requirements Matrix (Referentially Closed 16:16 and 25:25)",
+  "archetypes": {
+    "S1": {
+      "name": "Staff Augmentation / T&M",
+      "gate_kind": "services",
+      "required_p0": [
+        {"id": "P0-S1-01", "name": "hourly_billing_rate", "type": "measurement", "metric": "MEAS_HOURLY_BILLING_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S1-02", "name": "loaded_labor_cost_per_hour", "type": "measurement", "metric": "MEAS_LOADED_LABOR_COST_PER_HOUR", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S1-03", "name": "billable_utilization", "type": "measurement", "metric": "MEAS_BILLABLE_UTILIZATION", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S1-04", "name": "realization_rate", "type": "measurement", "metric": "MEAS_REALIZATION_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S1-05", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "S2": {
+      "name": "Fixed-Price Projects / Specialised Boutique",
+      "gate_kind": "services",
+      "required_p0": [
+        {"id": "P0-S2-01", "name": "project_fixed_price", "type": "measurement", "metric": "MEAS_PROJECT_FIXED_PRICE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S2-02", "name": "estimated_project_hours", "type": "measurement", "metric": "MEAS_ESTIMATED_PROJECT_HOURS", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S2-03", "name": "loaded_labor_cost_per_hour", "type": "measurement", "metric": "MEAS_LOADED_LABOR_COST_PER_HOUR", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S2-04", "name": "realization_rate", "type": "measurement", "metric": "MEAS_REALIZATION_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S2-05", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "S3": {
+      "name": "Leveraged Advisory / Consulting",
+      "gate_kind": "services",
+      "required_p0": [
+        {"id": "P0-S3-01", "name": "hourly_billing_rate", "type": "measurement", "metric": "MEAS_HOURLY_BILLING_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S3-02", "name": "loaded_labor_cost_per_hour", "type": "measurement", "metric": "MEAS_LOADED_LABOR_COST_PER_HOUR", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S3-03", "name": "realization_rate", "type": "measurement", "metric": "MEAS_REALIZATION_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S3-04", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "S4": {
+      "name": "Managed Services / MSP Recurrente",
+      "gate_kind": "services",
+      "required_p0": [
+        {"id": "P0-S4-01", "name": "hourly_billing_rate", "type": "measurement", "metric": "MEAS_HOURLY_BILLING_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-02", "name": "loaded_labor_cost_per_hour", "type": "measurement", "metric": "MEAS_LOADED_LABOR_COST_PER_HOUR", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-03", "name": "billable_utilization", "type": "measurement", "metric": "MEAS_BILLABLE_UTILIZATION", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-04", "name": "realization_rate", "type": "measurement", "metric": "MEAS_REALIZATION_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-05", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-06", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-07", "name": "cac", "type": "measurement", "metric": "MEAS_CAC", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-08", "name": "monthly_user_churn", "type": "measurement", "metric": "MEAS_CHURN_MONTHLY", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-09", "name": "contract_recurring_months", "type": "measurement", "metric": "MEAS_RECURRING_CONTRACT_MONTHS", "gate": "G2b", "allowed_tiers": [1]},
+        {"id": "P0-S4-10", "name": "contract_signed", "type": "claim", "predicate": "PRED_CONTRACT_SIGNED", "gate": "G1", "allowed_tiers": [1]},
+        {"id": "P0-S4-11", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-S4-12", "name": "24x7_shift_schedule", "type": "claim", "predicate": "PRED_24X7_SHIFT_SCHEDULE_PROVEN", "gate": "G7", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-SAAS-SS": {
+      "name": "Self-Serve B2B SaaS",
+      "gate_kind": "product",
+      "required_p0": [
+        {"id": "P0-SS-01", "name": "paying_customer_evidence", "type": "claim", "predicate": "PRED_PAYING_CUSTOMER_OR_CONVERSION_PROVEN", "gate": "G1", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-02", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-03", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-04", "name": "cac", "type": "measurement", "metric": "MEAS_CAC", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-05", "name": "monthly_user_churn", "type": "measurement", "metric": "MEAS_CHURN_MONTHLY", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-06", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-SS-07", "name": "data_residence", "type": "claim", "predicate": "PRED_DATA_RESIDENCE_DOCUMENTED", "gate": "G4", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-SAAS-SL": {
+      "name": "Sales-Led Enterprise SaaS",
+      "gate_kind": "product",
+      "required_p0": [
+        {"id": "P0-SL-01", "name": "economic_buyer_verified", "type": "claim", "predicate": "PRED_ECONOMIC_BUYER_CONFIRMED", "gate": "G1", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-02", "name": "contract_signed", "type": "claim", "predicate": "PRED_CONTRACT_SIGNED", "gate": "G1", "allowed_tiers": [1]},
+        {"id": "P0-SL-03", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-04", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-05", "name": "cac", "type": "measurement", "metric": "MEAS_CAC", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-06", "name": "monthly_user_churn", "type": "measurement", "metric": "MEAS_CHURN_MONTHLY", "gate": "G2b", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-07", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-SL-08", "name": "contract_term_and_termination", "type": "claim", "predicate": "PRED_MULTIYEAR_NO_CONVENIENCE_TERMINATION", "gate": "G3", "allowed_tiers": [1]},
+        {"id": "P0-SL-09", "name": "data_residence", "type": "claim", "predicate": "PRED_DATA_RESIDENCE_DOCUMENTED", "gate": "G4", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-USAGE": {
+      "name": "Consumption / API Pricing",
+      "gate_kind": "product",
+      "required_p0": [
+        {"id": "P0-USG-01", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-USG-02", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-USG-03", "name": "pass_through_cost_ratio", "type": "measurement", "metric": "MEAS_PASS_THROUGH_COST_RATIO", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-USG-04", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-AI-APP": {
+      "name": "AI Product Application / Vertical Copilot",
+      "gate_kind": "aix",
+      "required_p0": [
+        {"id": "P0-AI-01", "name": "task_price", "type": "measurement", "metric": "MEAS_TASK_PRICE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-02", "name": "pass1_accuracy", "type": "measurement", "metric": "MEAS_PASS1_ACCURACY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-03", "name": "inference_cost_per_task", "type": "measurement", "metric": "MEAS_INFERENCE_COGS_PER_TASK", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-04", "name": "human_supervision_cost_per_task", "type": "measurement", "metric": "MEAS_HUMAN_SUPERVISION_COGS_PER_TASK", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-05", "name": "total_cogs_per_task", "type": "measurement", "metric": "MEAS_TOTAL_COGS_PER_TASK", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-06", "name": "model_provider_fallback", "type": "claim", "predicate": "PRED_MODEL_PROVIDER_FALLBACK_TESTED", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-07", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-08", "name": "prompt_injection_defense", "type": "claim", "predicate": "PRED_PROMPT_INJECTION_DEFENSE_DOCUMENTED", "gate": "G4", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-09", "name": "eval_set_ground_truth", "type": "claim", "predicate": "PRED_EVAL_SET_GROUND_TRUTH_EXISTS", "gate": "G6", "allowed_tiers": [1, 2]},
+        {"id": "P0-AI-10", "name": "sla_backed_by_architecture", "type": "claim", "predicate": "PRED_SLA_BACKED_BY_ARCHITECTURE", "gate": "G7", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-INFRA": {
+      "name": "Cloud / Model Infrastructure",
+      "gate_kind": "product",
+      "required_p0": [
+        {"id": "P0-INF-01", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-INF-02", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-INF-03", "name": "facility_power_costs", "type": "measurement", "metric": "MEAS_FACILITY_POWER_COST", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-INF-04", "name": "capex_annual", "type": "measurement", "metric": "MEAS_CAPEX_ANNUAL", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-INF-05", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]}
+      ]
+    },
+    "P-MKT": {
+      "name": "Marketplace Bilocal",
+      "gate_kind": "product",
+      "required_p0": [
+        {"id": "P0-MKT-01", "name": "arpa_monthly", "type": "measurement", "metric": "MEAS_ARPA_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MKT-02", "name": "gross_margin_direct", "type": "measurement", "metric": "MEAS_GROSS_MARGIN_DIRECT", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MKT-03", "name": "take_rate", "type": "measurement", "metric": "MEAS_TAKE_RATE", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MKT-04", "name": "customer_concentration_top1", "type": "measurement", "metric": "MEAS_TOP1_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+        {"id": "P0-MKT-05", "name": "disintermediation_controls", "type": "claim", "predicate": "PRED_DISINTERMEDIATION_CONTROLS_MET", "gate": "G4", "allowed_tiers": [1, 2]}
+      ]
+    }
+  },
+  "modifiers": {
+    "V": {
+      "name": "Vertical Highly Regulated",
+      "required_p0": [
+        {"id": "P0-MOD-V1", "name": "sector_compliance", "type": "claim", "predicate": "PRED_SECTOR_REGULATORY_COMPLIANCE_PROVEN", "gate": "G4", "allowed_tiers": [1]}
+      ]
+    },
+    "AIX": {
+      "name": "AI Execution with Autonomous Agents",
+      "required_p0": [
+        {"id": "P0-MOD-AIX1", "name": "pass1_accuracy", "type": "measurement", "metric": "MEAS_PASS1_ACCURACY", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MOD-AIX2", "name": "human_cogs_per_task", "type": "measurement", "metric": "MEAS_HUMAN_SUPERVISION_COGS_PER_TASK", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MOD-AIX3", "name": "total_cogs_per_task", "type": "measurement", "metric": "MEAS_TOTAL_COGS_PER_TASK", "gate": "G2", "allowed_tiers": [1, 2]},
+        {"id": "P0-MOD-AIX4", "name": "silent_error_rate", "type": "measurement", "metric": "MEAS_SILENT_ERROR_RATE", "gate": "G6", "allowed_tiers": [1, 2]}
+      ]
+    }
+  },
+  "cross_cutting_p0": {
+    "financial_runway": [
+      {"id": "P0-CC-01", "name": "net_burn_monthly", "type": "measurement", "metric": "MEAS_NET_BURN_MONTHLY", "gate": "G2", "allowed_tiers": [1, 2]},
+      {"id": "P0-CC-02", "name": "cash_balance", "type": "measurement", "metric": "MEAS_CASH_BALANCE", "gate": "G2", "allowed_tiers": [1, 2]}
+    ],
+    "concentration_mitigation": [
+      {"id": "P0-CC-03", "name": "top3_concentration", "type": "measurement", "metric": "MEAS_TOP3_CLIENT_REVENUE_SHARE", "gate": "G3", "allowed_tiers": [1, 2]},
+      {"id": "P0-CC-04", "name": "diversification_plan", "type": "claim", "predicate": "PRED_DIVERSIFICATION_PLAN_VERIFIABLE", "gate": "G3", "allowed_tiers": [1, 2]},
+      {"id": "P0-CC-08", "name": "critical_supplier_alternative", "type": "claim", "predicate": "PRED_CRITICAL_SUPPLIER_ALTERNATIVE_TESTED", "gate": "G3", "allowed_tiers": [1, 2]}
+    ],
+    "compliance_dd": [
+      {"id": "P0-CC-05", "name": "ip_and_oss_licenses", "type": "claim", "predicate": "PRED_IP_AND_OSS_LICENSES_CLEARED", "gate": "G4", "allowed_tiers": [1, 2]}
+    ],
+    "critical_assumptions": [
+      {"id": "P0-CC-06", "name": "assumption_90d_testability", "type": "claim", "predicate": "PRED_CRITICAL_ASSUMPTION_TESTABLE_LE_90D", "gate": "G5", "allowed_tiers": [1, 2]}
+    ],
+    "cac_exemption": [
+      {"id": "P0-CC-07", "name": "cac_exemption_proof", "type": "claim", "predicate": "PRED_CAC_NOT_APPLICABLE_PROVEN", "gate": "G2b", "allowed_tiers": [1]}
+    ]
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "evaluation_date": "2026-11-10",
+  "stage": "operating",
+  "scope": {
+    "archetype_per_line": [
+      "S1"
+    ],
+    "country_customer": "CO",
+    "country_delivery": "CO",
+    "currency": "USD",
+    "horizon_m": 24,
+    "seeks_vc": false,
+    "ledger_ids": [
+      "L0"
+    ]
+  },
+  "lines": [
+    {
+      "id": "consultora",
+      "revenue_share": 1.0,
+      "declared_archetype": "S1",
+      "mechanisms": {
+        "tm": 1.0
+      },
+      "economics": {
+        "kind": "services",
+        "rate": 70,
+        "realisation": 0.9,
+        "loaded_cost_per_paid_hour": 55,
+        "utilisation": 0.45,
+        "ledger_ids": [
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ]
+      }
+    }
+  ],
+  "demand": {
+    "accounts": [
+      {
+        "id": "cliente-a",
+        "segment": "pymes",
+        "level": 5,
+        "economic_buyer": true,
+        "ledger_id": "L8"
+      }
+    ],
+    "ledger_ids": [
+      "L8"
+    ]
+  },
+  "concentration": {
+    "top1_share": 0.2,
+    "top3_share": 0.4,
+    "ledger_ids": [
+      "L1"
+    ]
+  },
+  "compliance": {
+    "rows": [],
+    "data_residence_known": true,
+    "segment_requirements_known": true,
+    "ledger_ids": [
+      "L1"
+    ]
+  },
+  "critical_assumptions": [
+    {
+      "id": "A1",
+      "driver": "utilisation",
+      "test": "piloto comercial",
+      "days": 90,
+      "tested": false,
+      "ledger_id": "L4"
+    }
+  ],
+  "delivery": {},
+  "ledger": [
+    {
+      "id": "L1",
+      "claim": "Tarifa estandar por hora",
+      "status": "fact",
+      "value": 70,
+      "unit": "USD/h",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md, seccion Modelo de ingresos",
+        "url": null
+      },
+      "quote": "Tarifa estandar 70 USD/hora",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "module": "M8",
+      "gate": "G2",
+      "country": "CO"
+    },
+    {
+      "id": "L2",
+      "claim": "Realizacion historica",
+      "status": "fact",
+      "value": 0.9,
+      "unit": "fraccion",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md",
+        "url": null
+      },
+      "quote": "Realizacion historica 90 %",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L3",
+      "claim": "Coste cargado por hora pagada",
+      "status": "fact",
+      "value": 55,
+      "unit": "USD/h",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md, seccion Equipo y costes",
+        "url": null
+      },
+      "quote": "coste cargado por hora pagada 55 USD",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L4",
+      "claim": "Utilizacion facturable del ultimo anio",
+      "status": "fact",
+      "value": 0.45,
+      "unit": "fraccion",
+      "source": {
+        "type": "proposal_document",
+        "tier": 2,
+        "title": "proposal.md",
+        "url": null
+      },
+      "quote": "Utilizacion facturable del ultimo anio: 45 %",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": true,
+      "gate": "G2"
+    },
+    {
+      "id": "L8",
+      "claim": "Contrato marco firmado con el cliente A",
+      "status": "fact",
+      "value": null,
+      "unit": null,
+      "source": {
+        "type": "proposal_document",
+        "tier": 1,
+        "title": "Anexo 2 de proposal.md: contrato marco firmado",
+        "url": null
+      },
+      "quote": "Contrato marco firmado con Cliente A",
+      "priority": "P0",
+      "tag": "[D]",
+      "self_declared": false,
+      "gate": "G1",
+      "country": "CO"
+    }
+  ]
+}

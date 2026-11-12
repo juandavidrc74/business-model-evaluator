@@ -1,0 +1,640 @@
+{
+  "description": "Matriz de due diligence (6h.1) y tabla de decision de compliance (6h.2). Las filas 'Voluntario' nunca son KO. G4 falla solo por filas 'Legal' sin plan o 'Contractual' exigidas por el segmento objetivo declarado. Sin escaneo activo de terceros.",
+  "due_diligence": [
+    {
+      "id": "N01",
+      "risk": "Equipo fundador",
+      "condition": "Ningún fundador con experiencia en venta B2B ni en entrega del servicio, sin plan de contratación (alerta)",
+      "evidence": "Pub/Emp",
+      "archetypes": "Todos",
+      "source": "Sahlman; Gompers et al. 2020",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "N02",
+      "risk": "Persona clave",
+      "condition": "Una persona controla código, cliente principal y credenciales sin documentación; KO → G7 si la entrega depende de ella",
+      "evidence": "Emp",
+      "archetypes": "Todos, sobre todo S3, S2 y AIX",
+      "source": "Fase 1 [P]",
+      "ko_gate": "G7",
+      "is_alert_only": false
+    },
+    {
+      "id": "N03",
+      "risk": "Gobierno corporativo",
+      "condition": "Cap table que no cuadra o socios inactivos con mucho capital sin pacto (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Todos",
+      "source": "Kaplan & Strömberg",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "N04",
+      "risk": "Concentración de clientes",
+      "condition": "Un cliente ≥ 50 % sin contrato plurianual o con terminación por conveniencia: KO → G3 [P]",
+      "evidence": "Emp (Pub si cotiza)",
+      "archetypes": "S1–S4, AIX",
+      "source": "ASC 280; IFRS 8; Patatoukas; Irvine et al.",
+      "ko_gate": "G3",
+      "is_alert_only": false
+    },
+    {
+      "id": "N05",
+      "risk": "Relaciones jóvenes",
+      "condition": "Concentración alta con relaciones de < 2 años (alerta) [P]",
+      "evidence": "Emp",
+      "archetypes": "Todos B2B",
+      "source": "Irvine et al. 2016",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "N06",
+      "risk": "Proveedor crítico único",
+      "condition": "Insumo crítico sin alternativa probada: KO → G3",
+      "evidence": "Emp",
+      "archetypes": "Producto, AIX, S4",
+      "source": "Fase 1 G3",
+      "ko_gate": "G3",
+      "is_alert_only": false
+    },
+    {
+      "id": "N07",
+      "risk": "Partner o marketplace",
+      "condition": "Gran parte de los ingresos vía un partner con terminación unilateral (alerta, sin umbral documentado)",
+      "evidence": "Pub/Emp",
+      "archetypes": "S3, S4, SaaS",
+      "source": "[I]",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "N08",
+      "risk": "Terminación por conveniencia",
+      "condition": "Contratos cancelables con < 30 días sin penalización usados como \"ARR\": se reclasifican",
+      "evidence": "Emp",
+      "archetypes": "SaaS, S4, AIX",
+      "source": "[I]",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "N09",
+      "risk": "Límite de responsabilidad",
+      "condition": "Responsabilidad ilimitada por datos o PI sin seguro cyber (alerta; abogado)",
+      "evidence": "Emp",
+      "archetypes": "Todos",
+      "source": "[I]",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "N10",
+      "risk": "SLA y penalizaciones",
+      "condition": "SLA más exigente que lo medido o penalizaciones sin tope: KO → G7",
+      "evidence": "Pub/Emp",
+      "archetypes": "SaaS, S4, P-INFRA, AIX",
+      "source": "SRE",
+      "ko_gate": "G7",
+      "is_alert_only": false
+    },
+    {
+      "id": "N11",
+      "risk": "Código de empleados",
+      "condition": "Sin cesión documentada donde no se presume: KO → G4",
+      "evidence": "Emp",
+      "archetypes": "Todos los que venden software",
+      "source": "17 U.S.C. §101 [M]; Ley 23/1982 art. 20 mod. Ley 1450 art. 28",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "N12",
+      "risk": "Código de contratistas",
+      "condition": "Núcleo del producto escrito por freelancers sin cesión escrita: KO → G4; abogado",
+      "evidence": "Emp",
+      "archetypes": "SaaS, P-AI-APP, AIX, S2",
+      "source": "Ídem; conflicto en fuentes colombianas",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "N13",
+      "risk": "PI cedida a clientes",
+      "condition": "\"Producto\" construido con código cedido a clientes en SOW: KO → G4",
+      "evidence": "Emp",
+      "archetypes": "S1, S2, AIX",
+      "source": "[I]",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "N14",
+      "risk": "GenAI en el código",
+      "condition": "Sin política ni registro donde la PI es el activo (alerta)",
+      "evidence": "Emp",
+      "archetypes": "SaaS, P-AI-APP",
+      "source": "NVCA SPA [S]",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "N15",
+      "risk": "Riesgo financiero",
+      "condition": "Runway < plazo al siguiente hito sin financiación comprometida (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Todos",
+      "source": "M9",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "N16",
+      "risk": "Litigios y sanciones",
+      "condition": "Litigio o sanción material no divulgado: KO → G6 o G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "Todos",
+      "source": "[I]",
+      "ko_gate": "G6",
+      "is_alert_only": false
+    },
+    {
+      "id": "N17",
+      "risk": "Profundidad de la DD",
+      "condition": "Informativo: no saltar la DD en operaciones \"calientes\"",
+      "evidence": "—",
+      "archetypes": "—",
+      "source": "Wangerin 2019; Fu & Taylor 2024 [S]",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T01",
+      "risk": "Arquitectura",
+      "condition": "Escalado prometido (10×) sin pruebas de carga ni diseño que lo soporte (alerta M14)",
+      "evidence": "Emp",
+      "archetypes": "Producto, AIX",
+      "source": "ISO 25010; Well-Architected",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T02",
+      "risk": "Calidad de código",
+      "condition": "Sin CI ni tests en el producto núcleo (alerta)",
+      "evidence": "Pub/Emp",
+      "archetypes": "Producto, AIX, S1",
+      "source": "ISO 5055; ISO 25010",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "T03",
+      "risk": "Deuda técnica",
+      "condition": "Runtime o framework sin soporte en producción sin plan (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Quien opera software",
+      "source": "Kruchten, Nord & Ozkaya [M]",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "T04",
+      "risk": "Seguridad de aplicación",
+      "condition": "Sin pentest ni prueba de seguridad en una app con datos sensibles: KO → G4 si el cliente lo exige",
+      "evidence": "Emp",
+      "archetypes": "SaaS, P-AI-APP, AIX, S4-MSSP",
+      "source": "OWASP SAMM; ASVS 5.0",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "T05",
+      "risk": "Higiene de repositorios",
+      "condition": "Puntuación baja de OpenSSF Scorecard: pedir evidencia",
+      "evidence": "Pub",
+      "archetypes": "OSS público",
+      "source": "OpenSSF Scorecard [M]",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T06",
+      "risk": "Dependencias vulnerables",
+      "condition": "Vulnerabilidades críticas conocidas sin parchear (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Quien opera software",
+      "source": "OSSRA 2025; ISO 18974",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "T07",
+      "risk": "Licencias OSS",
+      "condition": "Copyleft fuerte (GPL; AGPL en SaaS) sin cumplimiento: KO → G4; abogado",
+      "evidence": "Emp",
+      "archetypes": "SaaS, P-AI-APP, S1, S2",
+      "source": "OpenChain 5230; OSSRA 2025",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "T08",
+      "risk": "Infraestructura",
+      "condition": "Credenciales en el repositorio o producción manual sin backup (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Producto, S4",
+      "source": "Well-Architected",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "T09",
+      "risk": "Disponibilidad",
+      "condition": "Ver N10 → G7",
+      "evidence": "Pub/Emp",
+      "archetypes": "SaaS, S4, P-INFRA",
+      "source": "SRE",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T10",
+      "risk": "Observabilidad",
+      "condition": "Servicio con SLA sin monitorización ni alertas: KO → G7",
+      "evidence": "Emp",
+      "archetypes": "SaaS, S4, P-INFRA, AIX",
+      "source": "Google SRE",
+      "ko_gate": "G7",
+      "is_alert_only": false
+    },
+    {
+      "id": "T11",
+      "risk": "Backups y DR",
+      "condition": "Sin prueba de restauración en ≤ 12 meses (alerta); RTO contractual sin prueba: KO → G7",
+      "evidence": "Emp",
+      "archetypes": "Quien custodia datos",
+      "source": "ISO 22301 [M]; [P]",
+      "ko_gate": "G7",
+      "is_alert_only": false
+    },
+    {
+      "id": "T12",
+      "risk": "Continuidad",
+      "condition": "Ver N02 y N06",
+      "evidence": "Emp",
+      "archetypes": "S4, P-INFRA",
+      "source": "ISO 22301",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T13",
+      "risk": "Lock-in cloud",
+      "condition": "Salida imposible en < 12 meses con cliente que exige portabilidad (alerta)",
+      "evidence": "Emp",
+      "archetypes": "Producto",
+      "source": "DORA UE art. 30 [S]",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "T14",
+      "risk": "Gestión de datos",
+      "condition": "Sin inventario de datos personales donde se tratan: KO → G4",
+      "evidence": "Emp",
+      "archetypes": "Quien trata datos personales",
+      "source": "GDPR art. 30 [M]; Ley 1581",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "T15",
+      "risk": "Mantenibilidad",
+      "condition": "Ver N02",
+      "evidence": "Emp",
+      "archetypes": "Todos",
+      "source": "ISO 25010",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "T16",
+      "risk": "Entrega (DORA)",
+      "condition": "Sin medición: no es KO, se puntúa en M10",
+      "evidence": "Emp",
+      "archetypes": "Producto, S1",
+      "source": "dora.dev",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "C01",
+      "risk": "Privacidad",
+      "condition": "Datos personales sin política ni base legal: KO → G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "Todos",
+      "source": "Ley 1581, GDPR, LGPD, leyes estatales de EE. UU.",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "C02",
+      "risk": "RNBD Colombia",
+      "condition": "Obligado (activos > 100.000 UVT) y no registrado (alerta subsanable)",
+      "evidence": "Pub/Emp",
+      "archetypes": "Empresas colombianas",
+      "source": "Decreto 090 de 2018",
+      "ko_gate": null,
+      "is_alert_only": false
+    },
+    {
+      "id": "C03",
+      "risk": "Certificación exigida por el cliente",
+      "condition": "El segmento objetivo exige SOC 2 o ISO 27001 sin plan ni presupuesto: KO → G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "SaaS, S4, P-INFRA, P-AI-APP",
+      "source": "Fase 1 G4 (reformulada)",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "C04",
+      "risk": "Sector regulado",
+      "condition": "Vende a salud de EE. UU. sin BAA, procesa tarjetas sin PCI o sirve a finanzas de la UE sin cláusulas DORA: KO → G4",
+      "evidence": "Emp",
+      "archetypes": "Según cliente",
+      "source": "HIPAA, PCI DSS, DORA",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "C05",
+      "risk": "NIS2",
+      "condition": "Entidad en alcance (MSP, MSSP o cloud ≥ mediana en la UE) sin medidas de gestión de riesgos: KO → G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "S4, P-INFRA (UE)",
+      "source": "NIS2 [S]",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "C06",
+      "risk": "AI Act",
+      "condition": "Caso prohibido: KO → G4; caso del Anexo III sin plan antes del 2-dic-2027 (alerta)",
+      "evidence": "Pub/Emp",
+      "archetypes": "P-AI-APP, AIX con UE",
+      "source": "AI Act + Omnibus 2026 [S]",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA01",
+      "risk": "Prompt injection",
+      "condition": "Agente con herramientas sobre contenido externo sin pruebas de inyección (alerta)",
+      "evidence": "Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "OWASP LLM01; AgentDojo",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "IA02",
+      "risk": "Agencia excesiva",
+      "condition": "Acciones irreversibles con daño material sin humano en el bucle: KO → G7 [P]",
+      "evidence": "Emp",
+      "archetypes": "AIX, P-AI-APP",
+      "source": "OWASP LLM06",
+      "ko_gate": "G7",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA03",
+      "risk": "Alucinación y calidad",
+      "condition": "Sin *eval set* propio en un dominio de alto impacto (legal, salud, finanzas): KO → G6",
+      "evidence": "Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "Magesh et al. 2025; OWASP LLM09",
+      "ko_gate": "G6",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA04",
+      "risk": "Fallo de agentes",
+      "condition": "Automatización \"end-to-end\" prometida sin medición frente a una línea base (alerta)",
+      "evidence": "Emp",
+      "archetypes": "AIX",
+      "source": "MAST; TheAgentCompany; Kapoor et al.",
+      "ko_gate": null,
+      "is_alert_only": true
+    },
+    {
+      "id": "IA05",
+      "risk": "Fuga de datos",
+      "condition": "Datos de clientes enviados a un proveedor que entrena con ellos sin consentimiento: KO → G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "OWASP LLM02/07/08",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA06",
+      "risk": "Dependencia del proveedor de modelo",
+      "condition": "Un solo modelo, sin plan de migración probado y margen < 0 con precio ×2,0: KO → G3 [P]. **Corrección fase 2:** antes ±50 %",
+      "evidence": "Pub/Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "Páginas de deprecación de OpenAI y Anthropic; AI-012",
+      "ko_gate": "G3",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA07",
+      "risk": "Coste desbocado",
+      "condition": "Precio fijo con coste variable sin tope: KO → G2 si el p90 > precio",
+      "evidence": "Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "OWASP LLM10; FinOps for AI",
+      "ko_gate": "G2",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA08",
+      "risk": "Reproducibilidad",
+      "condition": "Decisiones con efecto legal sin logs ni versionado: KO → G4",
+      "evidence": "Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "AI Act (registros)",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    },
+    {
+      "id": "IA09",
+      "risk": "Modelos de terceros",
+      "condition": "Modelo con licencia incompatible con el uso comercial: KO → G4",
+      "evidence": "Pub/Emp",
+      "archetypes": "P-AI-APP, AIX",
+      "source": "OWASP LLM03/04; MITRE ATLAS",
+      "ko_gate": "G4",
+      "is_alert_only": false
+    }
+  ],
+  "compliance": [
+    {
+      "n": "1",
+      "if": "Trata datos personales de residentes en Colombia",
+      "framework": "Ley 1581 de 2012; Circular SIC 002 de 2024 si usa IA ([SIC](https://sedeelectronica.sic.gov.co/sites/default/files/normativa/Circular%20Externa%20No.%20002%20del%2021%20de%20agosto%20de%202024.pdf))",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "2",
+      "if": "Lo anterior y activos > 100.000 UVT",
+      "framework": "Registro Nacional de Bases de Datos ([Decreto 090](https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=85039), DD-013)",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Recomendable"
+    },
+    {
+      "n": "3",
+      "if": "Trata datos de residentes de la UE",
+      "framework": "GDPR (DPA art. 28, transferencias cap. V, registro art. 30)",
+      "type": "Legal, multas hasta 4 % o 20 M€ [M]",
+      "cost_or_time": "Sin coste documentado para pymes",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "4",
+      "if": "Trata datos de residentes en Brasil",
+      "framework": "LGPD",
+      "type": "Legal, multas hasta 2 % con tope de 50 M R$ por infracción [M]",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "5",
+      "if": "Trata datos de consumidores de estados de EE. UU. con ley integral",
+      "framework": "Leyes estatales (unas 20; consultar el tracker de la [IAPP](https://iapp.org/resources/article/us-state-privacy-legislation-tracker))",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "6",
+      "if": "Trata PHI para entidades sanitarias de EE. UU.",
+      "framework": "HIPAA (BAA)",
+      "type": "Legal o contractual",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "7",
+      "if": "Almacena, procesa o transmite datos de tarjeta",
+      "framework": "PCI DSS v4.0.1 (alcance reducible con tokenización)",
+      "type": "Contractual",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Recomendable"
+    },
+    {
+      "n": "8",
+      "if": "Proveedor TIC de entidades financieras de la UE",
+      "framework": "DORA art. 30; supervisión directa si es CTPP (19 designados el 18-nov-2025, [ESMA](https://www.esma.europa.eu/press-news/esma-news/european-supervisory-authorities-designate-critical-ict-third-party-providers), DD-016)",
+      "type": "Contractual vía cliente (legal si es CTPP)",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "9",
+      "if": "MSP, MSSP, cloud o centro de datos en la UE con ≥ 50 empleados o > 10 M€",
+      "framework": "NIS2 ([CCB](https://ccb.belgium.be/en/publication/nis2-directive-whom-why), DD-015, fuentes en conflicto)",
+      "type": "Legal según transposición",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "10",
+      "if": "Proveedor de un MSP o cloud sujeto a NIS2",
+      "framework": "NIS2 indirecta",
+      "type": "Contractual",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Recomendable"
+    },
+    {
+      "n": "11",
+      "if": "Sistema de IA con usuarios en la UE que interactúa con personas o genera contenido sintético",
+      "framework": "AI Act art. 50, desde el 2-ago-2026",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "12",
+      "if": "Caso de uso del Anexo III (empleo, crédito, educación…) en la UE",
+      "framework": "AI Act alto riesgo, desde el 2-dic-2027 tras el Omnibus (DD-018)",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "13",
+      "if": "Proveedor de un modelo GPAI en la UE",
+      "framework": "AI Act GPAI, desde el 2-ago-2025",
+      "type": "Legal",
+      "cost_or_time": "Sin coste documentado",
+      "lawyer": "Sí"
+    },
+    {
+      "n": "14",
+      "if": "Vende SaaS, MSP o MSSP a mid/enterprise de EE. UU. que lo pide en procurement",
+      "framework": "SOC 2 Type 2",
+      "type": "Contractual o comercial",
+      "cost_or_time": "Auditoría 12–50 kUSD; primer año 30–150 kUSD (proveedores, DD-019)",
+      "lawyer": "No"
+    },
+    {
+      "n": "15",
+      "if": "Vende a enterprise o sector público de la UE o LatAm, o a finanzas",
+      "framework": "ISO/IEC 27001:2022",
+      "type": "Contractual o comercial",
+      "cost_or_time": "5.000–50.000 GBP + 3.000–10.000 GBP/año (proveedor, DD-020)",
+      "lawyer": "No"
+    },
+    {
+      "n": "16",
+      "if": "MSSP o empresa de ciberseguridad",
+      "framework": "NIST CSF 2.0 como marco de servicio + fila 14 o 15",
+      "type": "Voluntario o comercial",
+      "cost_or_time": "Gratuito",
+      "lawyer": "No"
+    },
+    {
+      "n": "17",
+      "if": "IA de producto o AIX que vende a enterprise, regulados o UE",
+      "framework": "NIST AI RMF o ISO/IEC 42001",
+      "type": "Voluntario o comercial",
+      "cost_or_time": "42001 sin coste documentado",
+      "lawyer": "No"
+    },
+    {
+      "n": "18",
+      "if": "Distribuye software o vende a clientes que piden SBOM",
+      "framework": "OpenChain ISO/IEC 5230 + SBOM",
+      "type": "Voluntario o contractual",
+      "cost_or_time": "Autocertificación gratuita [M]",
+      "lawyer": "Para copyleft, sí"
+    },
+    {
+      "n": "19",
+      "if": "Pyme B2B que vende a pymes de LatAm sin datos sensibles ni sector regulado",
+      "framework": "Ninguna certificación; buenas prácticas (NIST CSF como guía)",
+      "type": "—",
+      "cost_or_time": "—",
+      "lawyer": "No"
+    }
+  ],
+  "source_section": "6h.1 / 6h.2"
+}

@@ -1,0 +1,74 @@
+{
+  "case": "d03-consultora-margen-negativo",
+  "deterministic_passed": 5,
+  "deterministic_total": 8,
+  "pending_review": 3,
+  "results": [
+    {
+      "grader": "01-verdict-no_go.md",
+      "type": "regex",
+      "passed": true,
+      "detail": "patrón encontrado"
+    },
+    {
+      "grader": "02-gate-g2-fail.md",
+      "type": "regex",
+      "passed": true,
+      "detail": "patrón encontrado"
+    },
+    {
+      "grader": "03-archetype-services.md",
+      "type": "regex",
+      "passed": true,
+      "detail": "patrón encontrado"
+    },
+    {
+      "grader": "04-informemd-does-not-use-nrr.md",
+      "type": "llm",
+      "passed": null,
+      "detail": "revisión humana (llm): informe.md does not use NRR, burn multiple or LTV/CAC to judge this consultancy"
+    },
+    {
+      "grader": "05-skill-invoked.md",
+      "type": "tool_used",
+      "passed": null,
+      "detail": "no verificable sin traza (Skill)"
+    },
+    {
+      "grader": "06-file-evaluation-json.md",
+      "type": "file_exists",
+      "passed": true,
+      "detail": "presente"
+    },
+    {
+      "grader": "07-file-informe-md.md",
+      "type": "file_exists",
+      "passed": true,
+      "detail": "presente"
+    },
+    {
+      "grader": "08-gates-script-run.md",
+      "type": "tool_used",
+      "passed": false,
+      "detail": "0 comandos coinciden"
+    },
+    {
+      "grader": "09-validate-output-run.md",
+      "type": "tool_used",
+      "passed": false,
+      "detail": "0 comandos coinciden"
+    },
+    {
+      "grader": "10-gates-before-check-claims.md",
+      "type": "tool_order",
+      "passed": false,
+      "detail": "before en None, after en None"
+    },
+    {
+      "grader": "11-no-number-in-informemd-or.md",
+      "type": "llm",
+      "passed": null,
+      "detail": "revisión humana (llm): No number in informe.md or in the ledger is presented as a fact without a source; any figure not in the proposal is labelled assumption or u"
+    }
+  ]
+}

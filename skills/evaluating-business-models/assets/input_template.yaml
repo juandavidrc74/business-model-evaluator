@@ -1,0 +1,49 @@
+# Plantilla de entrada que Claude rellena a partir de la propuesta (la leen las personas y Claude, no los scripts).
+# Cada valor numérico debe tener su entrada en el Evidence Ledger. Dejar vacío lo que no consta: nunca inventar.
+proposal_title: ""
+evaluation_date: ""            # AAAA-MM-DD
+high_impact: false             # true -> N = 5 ejecuciones
+scope:                         # G0: los cinco campos son P0
+  country_customer: ""
+  country_delivery: ""
+  currency: ""
+  horizon_months: null
+  seeks_venture_capital: null
+lines:                         # una por linea de negocio (RF-ARQ-02)
+  - id: ""
+    declared_label: ""         # "agencia", "SaaS", "consultora"... (alias, no arquetipo)
+    revenue_share: null
+    revenue_mechanisms:        # % de ingresos de la linea (suman 1)
+      time_and_materials: null
+      fixed_price_or_milestones: null
+      managed_recurring_with_sla: null
+      subscription: null
+      metered_usage: null
+      resale: null
+    delivery_country: ""
+    billing_country: ""
+    partner_dependency: ""
+    regulated_vertical: null
+    coverage_24x7: null
+    sales_motion: ""           # self-serve / asistida / enterprise
+    acv_median: null
+    owns_capacity: null
+    agents_execute_tasks: null
+    human_share_of_cogs_per_task: null
+demand_accounts:               # escala 0-6 por CUENTA (no por contacto)
+  - account: ""
+    segment: ""
+    level: null
+    economic_buyer: null
+    evidence: ""               # documento o declaracion (autodeclarada)
+concentration:
+  top1_share: null
+  top3_share: null
+  top1_contract_multi_year: null
+  top1_termination_for_convenience: null
+critical_assumptions:
+  - id: ""
+    driver: ""
+    test: ""
+    days: null
+open_questions: []             # lo que hay que preguntar al usuario (G0, P0)

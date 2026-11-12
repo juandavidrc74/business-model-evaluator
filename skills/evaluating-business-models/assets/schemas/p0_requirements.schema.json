@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p0_requirements.schema.json",
+  "title": "Canonical P0 Requirements Matrix Schema (Draft 2020-12)",
+  "type": "object",
+  "required": ["$schema", "$id", "title", "archetypes", "modifiers", "cross_cutting_p0"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "$id": {"type": "string"},
+    "title": {"type": "string"},
+    "archetypes": {
+      "type": "object",
+      "required": [
+        "S1", "S2", "S3", "S4",
+        "P-SAAS-SS", "P-SAAS-SL", "P-USAGE", "P-AI-APP", "P-INFRA", "P-MKT"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "gate_kind", "required_p0"],
+        "properties": {
+          "name": {"type": "string"},
+          "gate_kind": {"enum": ["services", "product", "aix"]},
+          "required_p0": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/p0_item"}
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "modifiers": {
+      "type": "object",
+      "required": ["V", "AIX"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "required_p0"],
+        "properties": {
+          "name": {"type": "string"},
+          "required_p0": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/p0_item"}
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "cross_cutting_p0": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {"$ref": "#/$defs/p0_item"}
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "allowed_predicates": {
+      "type": "string",
+      "enum": [
+        "PRED_ECONOMIC_BUYER_CONFIRMED",
+        "PRED_PAYING_CUSTOMER_OR_CONVERSION_PROVEN",
+        "PRED_CONTRACT_SIGNED",
+        "PRED_CAC_NOT_APPLICABLE_PROVEN",
+        "PRED_MULTIYEAR_NO_CONVENIENCE_TERMINATION",
+        "PRED_DIVERSIFICATION_PLAN_VERIFIABLE",
+        "PRED_MODEL_PROVIDER_FALLBACK_TESTED",
+        "PRED_DATA_RESIDENCE_DOCUMENTED",
+        "PRED_SECTOR_REGULATORY_COMPLIANCE_PROVEN",
+        "PRED_IP_AND_OSS_LICENSES_CLEARED",
+        "PRED_PROMPT_INJECTION_DEFENSE_DOCUMENTED",
+        "PRED_CRITICAL_ASSUMPTION_TESTABLE_LE_90D",
+        "PRED_EVAL_SET_GROUND_TRUTH_EXISTS",
+        "PRED_24X7_SHIFT_SCHEDULE_PROVEN",
+        "PRED_SLA_BACKED_BY_ARCHITECTURE",
+        "PRED_DISINTERMEDIATION_CONTROLS_MET",
+        "PRED_CRITICAL_SUPPLIER_ALTERNATIVE_TESTED"
+      ]
+    },
+    "allowed_measurements": {
+      "type": "string",
+      "enum": [
+        "MEAS_HOURLY_BILLING_RATE",
+        "MEAS_LOADED_LABOR_COST_PER_HOUR",
+        "MEAS_BILLABLE_UTILIZATION",
+        "MEAS_REALIZATION_RATE",
+        "MEAS_TOP1_CLIENT_REVENUE_SHARE",
+        "MEAS_TOP3_CLIENT_REVENUE_SHARE",
+        "MEAS_ARPA_MONTHLY",
+        "MEAS_CAC",
+        "MEAS_CHURN_MONTHLY",
+        "MEAS_GROSS_MARGIN_DIRECT",
+        "MEAS_PASS1_ACCURACY",
+        "MEAS_HUMAN_SUPERVISION_COGS_PER_TASK",
+        "MEAS_INFERENCE_COGS_PER_TASK",
+        "MEAS_TOTAL_COGS_PER_TASK",
+        "MEAS_TASK_PRICE",
+        "MEAS_RECURRING_CONTRACT_MONTHS",
+        "MEAS_NET_BURN_MONTHLY",
+        "MEAS_CASH_BALANCE",
+        "MEAS_PROJECT_FIXED_PRICE",
+        "MEAS_ESTIMATED_PROJECT_HOURS",
+        "MEAS_PASS_THROUGH_COST_RATIO",
+        "MEAS_FACILITY_POWER_COST",
+        "MEAS_CAPEX_ANNUAL",
+        "MEAS_TAKE_RATE",
+        "MEAS_SILENT_ERROR_RATE"
+      ]
+    },
+    "p0_item": {
+      "type": "object",
+      "required": ["id", "name", "type", "gate", "allowed_tiers"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^P0-[A-Z0-9]+-[0-9]{2}$"},
+        "name": {"type": "string"},
+        "type": {"enum": ["claim", "measurement"]},
+        "gate": {"enum": ["G0", "G1", "G2", "G2b", "G3", "G4", "G5", "G6", "G7"]},
+        "allowed_tiers": {
+          "type": "array",
+          "items": {"type": "integer", "enum": [1, 2]},
+          "minItems": 1
+        },
+        "predicate": {"$ref": "#/$defs/allowed_predicates"},
+        "metric": {"$ref": "#/$defs/allowed_measurements"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"type": {"const": "claim"}}},
+          "then": {"required": ["predicate"]}
+        },
+        {
+          "if": {"properties": {"type": {"const": "measurement"}}},
+          "then": {"required": ["metric"]}
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

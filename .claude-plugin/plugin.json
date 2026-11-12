@@ -1,0 +1,6 @@
+{
+  "name": "business-model-evaluator",
+  "version": "0.7.3",
+  "description": "Evaluación de propuestas de negocio de servicios tecnológicos con el método CEST: compuertas no compensatorias, Evidence Ledger, unit economics, caja, coste por tarea de IA, mercado, competencia y due diligence. Solo fuentes gratuitas por defecto.",
+  "keywords": ["business-model", "due-diligence", "unit-economics", "saas", "consulting", "msp", "ai-agents", "evaluation"]
+}

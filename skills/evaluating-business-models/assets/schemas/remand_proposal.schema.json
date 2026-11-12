@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "remand_proposal.schema.json",
+  "title": "Devil's Advocate Remand Proposal Contract (Draft 2020-12)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "proposal_id",
+    "evaluation_id",
+    "target_gate_or_module",
+    "finding_title",
+    "counterexample_narrative",
+    "supporting_evidence_quote",
+    "evidence_locator",
+    "evidence_tier",
+    "source_doc_sha256",
+    "proposed_predicate_impact",
+    "remand_fingerprint_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.4.9"},
+    "proposal_id": {"type": "string", "pattern": "^REM-[0-9]{3,4}$"},
+    "evaluation_id": {"type": "string"},
+    "target_gate_or_module": {"type": "string", "pattern": "^(G[0-7]|M([1-9]|1[0-5]))$"},
+    "finding_title": {"type": "string", "maxLength": 200},
+    "counterexample_narrative": {"type": "string", "maxLength": 2000},
+    "supporting_evidence_quote": {"type": "string", "maxLength": 500},
+    "evidence_locator": {"type": "string"},
+    "evidence_tier": {"type": "integer", "enum": [1, 2]},
+    "source_doc_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "proposed_predicate_impact": {"$ref": "#/$defs/allowed_predicates"},
+    "remand_fingerprint_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "allowed_predicates": {
+      "type": "string",
+      "enum": [
+        "PRED_ECONOMIC_BUYER_CONFIRMED",
+        "PRED_PAYING_CUSTOMER_OR_CONVERSION_PROVEN",
+        "PRED_CONTRACT_SIGNED",
+        "PRED_CAC_NOT_APPLICABLE_PROVEN",
+        "PRED_MULTIYEAR_NO_CONVENIENCE_TERMINATION",
+        "PRED_DIVERSIFICATION_PLAN_VERIFIABLE",
+        "PRED_MODEL_PROVIDER_FALLBACK_TESTED",
+        "PRED_DATA_RESIDENCE_DOCUMENTED",
+        "PRED_SECTOR_REGULATORY_COMPLIANCE_PROVEN",
+        "PRED_IP_AND_OSS_LICENSES_CLEARED",
+        "PRED_PROMPT_INJECTION_DEFENSE_DOCUMENTED",
+        "PRED_CRITICAL_ASSUMPTION_TESTABLE_LE_90D",
+        "PRED_EVAL_SET_GROUND_TRUTH_EXISTS",
+        "PRED_24X7_SHIFT_SCHEDULE_PROVEN",
+        "PRED_SLA_BACKED_BY_ARCHITECTURE",
+        "PRED_DISINTERMEDIATION_CONTROLS_MET",
+        "PRED_CRITICAL_SUPPLIER_ALTERNATIVE_TESTED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+# Repositorio público: solo se publica el plugin.
+# Lista blanca: todo lo demás (evaluaciones de propuestas reales, pruebas internas,
+# auditorías, espacios de trabajo) se queda solo en este equipo.
+/*
+!/.gitignore
+!/.claude-plugin/
+!/agents/
+!/skills/
+!/README.md
+!/CHANGELOG.md
+__pycache__/
+*.pyc
